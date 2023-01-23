@@ -1,46 +1,4 @@
 #!/bin/sh
+#
+echo "dmVyc2lvbj0xLjgKIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwpURU1QQVRIPS90bXAKTVlfSVBLPWVuaWdtYTItcGx1Z2luLWV4dGVuc2lvbnMtaXB0b3NhdF8xLjhfYWxsLmlwawpNWV9ERUI9ZW5pZ21hMi1wbHVnaW4tZXh0ZW5zaW9ucy1pcHRvc2F0XzEuOC5kZWIKTVlfVVJMPSJodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vZW1pbDIzNy9pcHRvc2F0L21haW4iCiMgcmVtb3ZlIG9sZCB2ZXJzaW9uICMKcm0gLXJmIC91c3IvbGliL2VuaWdtYTIvcHl0aG9uL1BsdWdpbnMvRXh0ZW5zaW9ucy9JUHRvU0FUCiMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKCiMgRG93bmxvYWQgYW5kIGluc3RhbGwgcGx1Z2luICMKCmVjaG8gIiBEb3dubG9hZCBhbmQgaW5zdGFsbCBwbHVnaW4iCgpjZCAvdG1wCnNldCAtZQogICAgIHdnZXQgIiRNWV9VUkwvJE1ZX0lQSyIKICB3YWl0CiAgICAgd2dldCAiJE1ZX1VSTC8kTVlfREVCIgoKIGlmIHdoaWNoIGRwa2cgPiAvZGV2L251bGwgMj4mMTsgdGhlbgoJCWRwa2cgLWkgLS1mb3JjZS1vdmVyd3JpdGUgJE1ZX0RFQjsgYXB0LWdldCBpbnN0YWxsIC1mIC15CgllbHNlCgkJb3BrZyBpbnN0YWxsIC0tZm9yY2UtcmVpbnN0YWxsICRNWV9JUEsKCWZpCmVjaG8gIj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IgpzZXQgK2UKY2QgLi4Kd2FpdApybSAtZiAvdG1wLyRNWV9JUEsKcm0gLWYgL3RtcC8kTVlfREVCCglpZiBbICQ/IC1lcSAwIF07IHRoZW4KZWNobyAiPj4+PiAgU1VDQ0VTU0ZVTExZIElOU1RBTExFRCA8PDw8IgpmaQoJCWVjaG8gIioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqIgplY2hvICIgICBVUExPQURFRCBCWSAgPj4+PiAgIEVNSUxfTkFCSUwgIiAgIApzbGVlcCA0OwoJCWVjaG8gIi4gPj4+PiAgIFBsZWFzZSBSRVNUQVJJTkcgICAgIDw8PDwiCmVjaG8gIioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioiCndhaXQKZXhpdCAw" | base64 -d | sh
 
-#wget -q "--no-check-certificate" https://raw.githubusercontent.com/emil237/iptosat/main/installer.sh -O - | /bin/sh
-
-version=1.8
-#############################################################
-TEMPATH=/tmp
-MY_IPK=enigma2-plugin-extensions-iptosat_1.8_all.ipk
-MY_DEB=enigma2-plugin-extensions-iptosat_1.8.deb
-MY_URL="https://raw.githubusercontent.com/emil237/iptosat/main"
-# remove old version #
-rm -rf /usr/lib/enigma2/python/Plugins/Extensions/IPtoSAT
-###########################################
-
-# Download and install plugin #
-
-echo " Download and install plugin"
-
-cd /tmp
-set -e
-     wget "$MY_URL/$MY_IPK"
-  wait
-     wget "$MY_URL/$MY_DEB"
-
- if which dpkg > /dev/null 2>&1; then
-		dpkg -i --force-overwrite $MY_DEB; apt-get install -f -y
-	else
-		opkg install --force-reinstall $MY_IPK
-	fi
-echo "============================================================================================================================="
-set +e
-cd ..
-wait
-rm -f /tmp/$MY_IPK
-rm -f /tmp/$MY_DEB
-	if [ $? -eq 0 ]; then
-echo ">>>>  SUCCESSFULLY INSTALLED <<<<"
-fi
-		echo "********************************************************************************"
-echo "   UPLOADED BY  >>>>   EMIL_NABIL "   
-sleep 4;
-		echo ". >>>>         RESTARING     <<<<"
-echo "**********************************************************************************"
-wait
-killall -9 enigma2
-exit 0
